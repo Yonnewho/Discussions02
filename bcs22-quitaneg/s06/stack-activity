@@ -1,0 +1,55 @@
+class Task:
+    def __init__(self, title, description):
+        self.title = title
+        self.description = description
+        self.completed = False
+
+class TaskManager:
+    def __init__(self):
+        self.tasks = []
+    
+    def add_task(self, title, description):
+        task = Task(title, description)
+        self.tasks.append(task)
+
+    def mark_task_completed(self, task_index):
+        if 0 <= task_index < len(self.tasks):
+            self.tasks[task_index].completed = True
+            print(f'Task {task_index + 1} marked as completed')
+        else:
+            print(f'Invalid task index: {task_index + 1}')  
+
+    def display_tasks(self):
+        if self.tasks:
+            print('Tasks')
+            for i, task in enumerate(self.tasks, 1):
+                print(f'{i}. Title Of Task: {task.title}\n Description: {task.description}\n Completed Task: {"Yes" if task.completed else "No"}')
+        else:
+            print('No Task Available')
+
+def main():
+    task_manager = TaskManager()
+
+    while True:
+        print('Menu\n1. Add Task\n2. Mark a task as completed\n3. Display Tasks\n4. Exit')
+        choice = input('Enter Choice: ') 
+
+        if choice == '1':
+            title = input('Enter Task Title: ')
+            description = input('Enter Task Description: ')
+            task_manager.add_task(title, description)
+
+        elif choice == '2':
+            task_index = int(input("Enter the index of the completed task: "))
+            task_manager.mark_task_completed(task_index - 1)
+
+        elif choice == '3':
+            task_manager.display_tasks()
+
+        elif choice == '4':
+            break
+
+        else:
+            print('Invalid choice. Please choose a task')
+
+main()
