@@ -47,9 +47,11 @@ def main():
             task_manager.display_tasks()
 
         elif choice == '4':
+            print(f'See you, complete more task')
             break
 
         else:
             print('Invalid choice. Please choose a task')
 
 main()
+
